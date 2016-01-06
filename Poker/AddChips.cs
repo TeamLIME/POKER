@@ -49,6 +49,7 @@ namespace Poker
             message,title,
             MessageBoxButtons.YesNo, 
             MessageBoxIcon.Question);
+
             switch (result)
             {
                 case DialogResult.No:
