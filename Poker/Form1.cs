@@ -101,9 +101,9 @@ namespace Poker
         async Task Shuffle()
         {
             bools.Add(PFturn); bools.Add(B1Fturn); bools.Add(B2Fturn); bools.Add(B3Fturn); bools.Add(B4Fturn); bools.Add(B5Fturn);
-            bCall.Enabled = false;
-            bRaise.Enabled = false;
-            bFold.Enabled = false;
+            buttonCall.Enabled = false;
+            buttonRaise.Enabled = false;
+            buttonFold.Enabled = false;
             bCheck.Enabled = false;
             MaximizeBox = false;
             MinimizeBox = false;
@@ -470,11 +470,11 @@ namespace Poker
             }
             if (i == 17)
             {
-                bRaise.Enabled = true;
-                bCall.Enabled = true;
-                bRaise.Enabled = true;
-                bRaise.Enabled = true;
-                bFold.Enabled = true;
+                buttonRaise.Enabled = true;
+                buttonCall.Enabled = true;
+                buttonRaise.Enabled = true;
+                buttonRaise.Enabled = true;
+                buttonFold.Enabled = true;
             }
         }
         async Task Turns()
@@ -486,16 +486,16 @@ namespace Poker
                 {
                     FixCall(pStatus, ref pCall, ref pRaise, 1);
                     //MessageBox.Show("Player's Turn");
-                    pbTimer.Visible = true;
-                    pbTimer.Value = 1000;
+                    progressBarTimer.Visible = true;
+                    progressBarTimer.Value = 1000;
                     t = 60;
                     up = 10000000;
                     timer.Start();
-                    bRaise.Enabled = true;
-                    bCall.Enabled = true;
-                    bRaise.Enabled = true;
-                    bRaise.Enabled = true;
-                    bFold.Enabled = true;
+                    buttonRaise.Enabled = true;
+                    buttonCall.Enabled = true;
+                    buttonRaise.Enabled = true;
+                    buttonRaise.Enabled = true;
+                    buttonFold.Enabled = true;
                     turnCount++;
                     FixCall(pStatus, ref pCall, ref pRaise, 2);
                 }
@@ -505,7 +505,7 @@ namespace Poker
                 await AllIn();
                 if (PFturn && !pFolded)
                 {
-                    if (bCall.Text.Contains("All in") == false || bRaise.Text.Contains("All in") == false)
+                    if (buttonCall.Text.Contains("All in") == false || buttonRaise.Text.Contains("All in") == false)
                     {
                         bools.RemoveAt(0);
                         bools.Insert(0, null);
@@ -514,12 +514,12 @@ namespace Poker
                     }
                 }
                 await CheckRaise(0, 0);
-                pbTimer.Visible = false;
-                bRaise.Enabled = false;
-                bCall.Enabled = false;
-                bRaise.Enabled = false;
-                bRaise.Enabled = false;
-                bFold.Enabled = false;
+                progressBarTimer.Visible = false;
+                buttonRaise.Enabled = false;
+                buttonCall.Enabled = false;
+                buttonRaise.Enabled = false;
+                buttonRaise.Enabled = false;
+                buttonFold.Enabled = false;
                 timer.Stop();
                 B1turn = true;
                 if (!B1Fturn)
@@ -658,7 +658,7 @@ namespace Poker
                 }
                 if (PFturn && !pFolded)
                 {
-                    if (bCall.Text.Contains("All in") == false || bRaise.Text.Contains("All in") == false)
+                    if (buttonCall.Text.Contains("All in") == false || buttonRaise.Text.Contains("All in") == false)
                     {
                         bools.RemoveAt(0);
                         bools.Insert(0, null);
@@ -1981,10 +1981,10 @@ namespace Poker
                         bot5Chips += f2.a;
                         PFturn = false;
                         Pturn = true;
-                        bRaise.Enabled = true;
-                        bFold.Enabled = true;
+                        buttonRaise.Enabled = true;
+                        buttonFold.Enabled = true;
                         bCheck.Enabled = true;
-                        bRaise.Text = "Raise";
+                        buttonRaise.Text = "Raise";
                     }
                 }
                 pPanel.Visible = false; b1Panel.Visible = false; b2Panel.Visible = false; b3Panel.Visible = false; b4Panel.Visible = false; b5Panel.Visible = false;
@@ -2056,8 +2056,8 @@ namespace Poker
                     if (cRaise == Raise && Raise > 0)
                     {
                         call = 0;
-                        bCall.Enabled = false;
-                        bCall.Text = "Callisfuckedup";
+                        buttonCall.Enabled = false;
+                        buttonCall.Text = "Callisfuckedup";
                     }
                 }
             }
@@ -2245,10 +2245,10 @@ namespace Poker
                     bot5Chips += f2.a;
                     PFturn = false;
                     Pturn = true;
-                    bRaise.Enabled = true;
-                    bFold.Enabled = true;
+                    buttonRaise.Enabled = true;
+                    buttonFold.Enabled = true;
                     bCheck.Enabled = true;
-                    bRaise.Text = "Raise";
+                    buttonRaise.Text = "Raise";
                 }
             }
             ImgLocation = Directory.GetFiles("Assets\\Cards", "*.png", SearchOption.TopDirectoryOnly);
@@ -2720,7 +2720,7 @@ namespace Poker
         #region UI
         private async void timer_Tick(object sender, object e)
         {
-            if (pbTimer.Value <= 0)
+            if (progressBarTimer.Value <= 0)
             {
                 PFturn = true;
                 await Turns();
@@ -2728,7 +2728,7 @@ namespace Poker
             if (t > 0)
             {
                 t--;
-                pbTimer.Value = (t / 6) * 100;
+                progressBarTimer.Value = (t / 6) * 100;
             }
         }
         private void Update_Tick(object sender, object e)
@@ -2767,9 +2767,9 @@ namespace Poker
             {
                 Pturn = false;
                 PFturn = true;
-                bCall.Enabled = false;
-                bRaise.Enabled = false;
-                bFold.Enabled = false;
+                buttonCall.Enabled = false;
+                buttonRaise.Enabled = false;
+                buttonFold.Enabled = false;
                 bCheck.Enabled = false;
             }
             if (up > 0)
@@ -2778,12 +2778,12 @@ namespace Poker
             }
             if (Chips >= call)
             {
-                bCall.Text = "Call " + call.ToString();
+                buttonCall.Text = "Call " + call.ToString();
             }
             else
             {
-                bCall.Text = "All in";
-                bRaise.Enabled = false;
+                buttonCall.Text = "All in";
+                buttonRaise.Enabled = false;
             }
             if (call > 0)
             {
@@ -2792,12 +2792,12 @@ namespace Poker
             if (call <= 0)
             {
                 bCheck.Enabled = true;
-                bCall.Text = "Call";
-                bCall.Enabled = false;
+                buttonCall.Text = "Call";
+                buttonCall.Enabled = false;
             }
             if (Chips <= 0)
             {
-                bRaise.Enabled = false;
+                buttonRaise.Enabled = false;
             }
             int parsedValue;
 
@@ -2805,16 +2805,16 @@ namespace Poker
             {
                 if (Chips <= int.Parse(tbRaise.Text))
                 {
-                    bRaise.Text = "All in";
+                    buttonRaise.Text = "All in";
                 }
                 else
                 {
-                    bRaise.Text = "Raise";
+                    buttonRaise.Text = "Raise";
                 }
             }
             if (Chips < call)
             {
-                bRaise.Enabled = false;
+                buttonRaise.Enabled = false;
             }
         }
         private async void bFold_Click(object sender, EventArgs e)
@@ -2865,7 +2865,7 @@ namespace Poker
                 Chips = 0;
                 tbChips.Text = "Chips : " + Chips.ToString();
                 Pturn = false;
-                bFold.Enabled = false;
+                buttonFold.Enabled = false;
                 pCall = Chips;
             }
             await Turns();
@@ -2892,7 +2892,7 @@ namespace Poker
                             Raise = int.Parse(tbRaise.Text);
                             pStatus.Text = "Raise " + call.ToString();
                             tbPot.Text = (int.Parse(tbPot.Text) + call).ToString();
-                            bCall.Text = "Call";
+                            buttonCall.Text = "Call";
                             Chips -= int.Parse(tbRaise.Text);
                             raising = true;
                             last = 0;

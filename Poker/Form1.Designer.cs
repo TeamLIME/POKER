@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.bFold = new System.Windows.Forms.Button();
+            this.buttonFold = new System.Windows.Forms.Button();
             this.bCheck = new System.Windows.Forms.Button();
-            this.bCall = new System.Windows.Forms.Button();
-            this.bRaise = new System.Windows.Forms.Button();
-            this.pbTimer = new System.Windows.Forms.ProgressBar();
+            this.buttonCall = new System.Windows.Forms.Button();
+            this.buttonRaise = new System.Windows.Forms.Button();
+            this.progressBarTimer = new System.Windows.Forms.ProgressBar();
             this.tbChips = new System.Windows.Forms.TextBox();
             this.bAdd = new System.Windows.Forms.Button();
             this.tbAdd = new System.Windows.Forms.TextBox();
@@ -57,17 +57,17 @@
             this.tbRaise = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // bFold
+            // buttonFold
             // 
-            this.bFold.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.bFold.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bFold.Location = new System.Drawing.Point(335, 660);
-            this.bFold.Name = "bFold";
-            this.bFold.Size = new System.Drawing.Size(130, 62);
-            this.bFold.TabIndex = 0;
-            this.bFold.Text = "Fold";
-            this.bFold.UseVisualStyleBackColor = true;
-            this.bFold.Click += new System.EventHandler(this.bFold_Click);
+            this.buttonFold.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.buttonFold.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonFold.Location = new System.Drawing.Point(335, 660);
+            this.buttonFold.Name = "buttonFold";
+            this.buttonFold.Size = new System.Drawing.Size(130, 62);
+            this.buttonFold.TabIndex = 0;
+            this.buttonFold.Text = "Fold";
+            this.buttonFold.UseVisualStyleBackColor = true;
+            this.buttonFold.Click += new System.EventHandler(this.bFold_Click);
             // 
             // bCheck
             // 
@@ -81,40 +81,40 @@
             this.bCheck.UseVisualStyleBackColor = true;
             this.bCheck.Click += new System.EventHandler(this.bCheck_Click);
             // 
-            // bCall
+            // buttonCall
             // 
-            this.bCall.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.bCall.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bCall.Location = new System.Drawing.Point(667, 661);
-            this.bCall.Name = "bCall";
-            this.bCall.Size = new System.Drawing.Size(126, 62);
-            this.bCall.TabIndex = 3;
-            this.bCall.Text = "Call";
-            this.bCall.UseVisualStyleBackColor = true;
-            this.bCall.Click += new System.EventHandler(this.bCall_Click);
+            this.buttonCall.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.buttonCall.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCall.Location = new System.Drawing.Point(667, 661);
+            this.buttonCall.Name = "buttonCall";
+            this.buttonCall.Size = new System.Drawing.Size(126, 62);
+            this.buttonCall.TabIndex = 3;
+            this.buttonCall.Text = "Call";
+            this.buttonCall.UseVisualStyleBackColor = true;
+            this.buttonCall.Click += new System.EventHandler(this.bCall_Click);
             // 
-            // bRaise
+            // buttonRaise
             // 
-            this.bRaise.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.bRaise.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bRaise.Location = new System.Drawing.Point(835, 661);
-            this.bRaise.Name = "bRaise";
-            this.bRaise.Size = new System.Drawing.Size(124, 62);
-            this.bRaise.TabIndex = 4;
-            this.bRaise.Text = "Raise";
-            this.bRaise.UseVisualStyleBackColor = true;
-            this.bRaise.Click += new System.EventHandler(this.bRaise_Click);
+            this.buttonRaise.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.buttonRaise.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonRaise.Location = new System.Drawing.Point(835, 661);
+            this.buttonRaise.Name = "buttonRaise";
+            this.buttonRaise.Size = new System.Drawing.Size(124, 62);
+            this.buttonRaise.TabIndex = 4;
+            this.buttonRaise.Text = "Raise";
+            this.buttonRaise.UseVisualStyleBackColor = true;
+            this.buttonRaise.Click += new System.EventHandler(this.bRaise_Click);
             // 
-            // pbTimer
+            // progressBarTimer
             // 
-            this.pbTimer.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.pbTimer.BackColor = System.Drawing.SystemColors.Control;
-            this.pbTimer.Location = new System.Drawing.Point(335, 631);
-            this.pbTimer.Maximum = 1000;
-            this.pbTimer.Name = "pbTimer";
-            this.pbTimer.Size = new System.Drawing.Size(667, 23);
-            this.pbTimer.TabIndex = 5;
-            this.pbTimer.Value = 1000;
+            this.progressBarTimer.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.progressBarTimer.BackColor = System.Drawing.SystemColors.Control;
+            this.progressBarTimer.Location = new System.Drawing.Point(335, 631);
+            this.progressBarTimer.Maximum = 1000;
+            this.progressBarTimer.Name = "progressBarTimer";
+            this.progressBarTimer.Size = new System.Drawing.Size(667, 23);
+            this.progressBarTimer.TabIndex = 5;
+            this.progressBarTimer.Value = 1000;
             // 
             // tbChips
             // 
@@ -345,11 +345,11 @@
             this.Controls.Add(this.tbAdd);
             this.Controls.Add(this.bAdd);
             this.Controls.Add(this.tbChips);
-            this.Controls.Add(this.pbTimer);
-            this.Controls.Add(this.bRaise);
-            this.Controls.Add(this.bCall);
+            this.Controls.Add(this.progressBarTimer);
+            this.Controls.Add(this.buttonRaise);
+            this.Controls.Add(this.buttonCall);
             this.Controls.Add(this.bCheck);
-            this.Controls.Add(this.bFold);
+            this.Controls.Add(this.buttonFold);
             this.DoubleBuffered = true;
             this.Name = "Form1";
             this.Text = "GLS Texas Poker";
@@ -361,11 +361,11 @@
 
         #endregion
 
-        private System.Windows.Forms.Button bFold;
+        private System.Windows.Forms.Button buttonFold;
         private System.Windows.Forms.Button bCheck;
-        private System.Windows.Forms.Button bCall;
-        private System.Windows.Forms.Button bRaise;
-        private System.Windows.Forms.ProgressBar pbTimer;
+        private System.Windows.Forms.Button buttonCall;
+        private System.Windows.Forms.Button buttonRaise;
+        private System.Windows.Forms.ProgressBar progressBarTimer;
         private System.Windows.Forms.TextBox tbChips;
         private System.Windows.Forms.Button bAdd;
         private System.Windows.Forms.TextBox tbAdd;
