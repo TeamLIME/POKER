@@ -44,13 +44,16 @@ namespace Poker
         private int bot4ChipsCount;
         private int bot5ChipsCount;
 
+        private int windowWidth;
+        private int windowHeight;
+
         double type, rounds = 0, b1Power, b2Power, b3Power, b4Power, b5Power, pPower = 0, pType = -1, Raise = 0,
         b1Type = -1, b2Type = -1, b3Type = -1, b4Type = -1, b5Type = -1;
         bool B1turn = false, B2turn = false, B3turn = false, B4turn = false, B5turn = false;
         bool B1Fturn = false, B2Fturn = false, B3Fturn = false, B4Fturn = false, B5Fturn = false;
         bool pFolded, b1Folded, b2Folded, b3Folded, b4Folded, b5Folded, intsadded, changed;
         int pCall = 0, b1Call = 0, b2Call = 0, b3Call = 0, b4Call = 0, b5Call = 0, pRaise = 0, b1Raise = 0, b2Raise = 0, b3Raise = 0, b4Raise = 0, b5Raise = 0;
-        int height, width, winners = 0, Flop = 1, Turn = 2, River = 3, End = 4, maxLeft = 6;
+        int winners = 0, Flop = 1, Turn = 2, River = 3, End = 4, maxLeft = 6;
         int last = 123, raisedTurn = 1;
         List<bool?> bools = new List<bool?>();
         List<Type> Win = new List<Type>();
@@ -88,17 +91,11 @@ namespace Poker
             MaximizeBox = false;
             MinimizeBox = false;
             Updates.Start();
-            InitializeComponent();
-            width = this.Width;
-            height = this.Height;
-            Shuffle();
-            textBoxPotAmount.Enabled = false;
-            textBoxPlayerChips.Enabled = false;
-            this.textBoxChipsBot1.Enabled = false;
-            this.textBoxChipsBot2.Enabled = false;
-            this.textBoxChipsBot3.Enabled = false;
-            this.textBoxChipsBot4.Enabled = false;
-            this.textBoxChipsBot5.Enabled = false;
+            this.InitializeComponent(); //Definition in the designer partial class.
+            this.windowWidth = this.Width;
+            this.windowHeight = this.Height;
+            this.Shuffle();
+            this.DisableTextBoxesUserInteraction();
             textBoxPlayerChips.Text = "Player Chips : " + playerChipsCount.ToString();
             textBoxChipsBot1.Text = "Bot1 Chips : " + bot1ChipsCount.ToString();
             textBoxChipsBot2.Text = "Bot2 Chips : " + bot2ChipsCount.ToString();
@@ -109,18 +106,7 @@ namespace Poker
             timer.Tick += timer_Tick;
             Updates.Interval = (1 * 1 * 100);
             Updates.Tick += Update_Tick;
-            textBoxBigBlind.Visible = true;
-            textBoxSmallBlind.Visible = true;
-            buttonBigBlind.Visible = true;
-            buttonSmallBlind.Visible = true;
-            textBoxBigBlind.Visible = true;
-            textBoxSmallBlind.Visible = true;
-            buttonBigBlind.Visible = true;
-            buttonSmallBlind.Visible = true;
-            textBoxBigBlind.Visible = false;
-            textBoxSmallBlind.Visible = false;
-            buttonBigBlind.Visible = false;
-            buttonSmallBlind.Visible = false;
+            this.SetBlindButtonsVisibilityToFalse();
             textBoxRaiseAmount.Text = (bigBlindValue * 2).ToString();
         }
         async Task Shuffle()
@@ -2240,7 +2226,8 @@ namespace Poker
             pFolded = false; b1Folded = false; b2Folded = false; b3Folded = false; b4Folded = false; b5Folded = false;
             PFturn = false; Pturn = true; restart = false; raising = false;
             pCall = 0; b1Call = 0; b2Call = 0; b3Call = 0; b4Call = 0; b5Call = 0; pRaise = 0; b1Raise = 0; b2Raise = 0; b3Raise = 0; b4Raise = 0; b5Raise = 0;
-            height = 0; width = 0; winners = 0; Flop = 1; Turn = 2; River = 3; End = 4; maxLeft = 6;
+            //windowHeight = 0; windowWidth = 0; 
+            winners = 0; Flop = 1; Turn = 2; River = 3; End = 4; maxLeft = 6;
             last = 123; raisedTurn = 1;
             bools.Clear();
             CheckWinners.Clear();
@@ -2959,7 +2946,7 @@ namespace Poker
             }
             textBoxPlayerChips.Text = "Chips : " + playerChipsCount.ToString();
         }
-        private void bOptions_Click(object sender, EventArgs e)
+        private void ButtonChangeBlindsValue_Click(object sender, EventArgs e)
         {
             textBoxBigBlind.Text = bigBlindValue.ToString();
             textBoxSmallBlind.Text = smallBlindValue.ToString();
@@ -3040,8 +3027,8 @@ namespace Poker
         }
         private void Layout_Change(object sender, LayoutEventArgs e)
         {
-            width = this.Width;
-            height = this.Height;
+            windowWidth = this.Width;
+            windowHeight = this.Height;
         }
         #endregion
 
@@ -3053,6 +3040,25 @@ namespace Poker
             this.bot3ChipsCount = DefaultChipsCount;
             this.bot4ChipsCount = DefaultChipsCount;
             this.bot5ChipsCount = DefaultChipsCount;
+        }
+
+        private void DisableTextBoxesUserInteraction()
+        {
+            this.textBoxPotAmount.Enabled = false;
+            this.textBoxPlayerChips.Enabled = false;
+            this.textBoxChipsBot1.Enabled = false;
+            this.textBoxChipsBot2.Enabled = false;
+            this.textBoxChipsBot3.Enabled = false;
+            this.textBoxChipsBot4.Enabled = false;
+            this.textBoxChipsBot5.Enabled = false;
+        }
+
+        private void SetBlindButtonsVisibilityToFalse()
+        {
+            textBoxBigBlind.Visible = false;
+            textBoxSmallBlind.Visible = false;
+            buttonBigBlind.Visible = false;
+            buttonSmallBlind.Visible = false;
         }
     }
 }

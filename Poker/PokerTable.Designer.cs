@@ -213,7 +213,7 @@
             this.buttonChangeBlindsValue.TabIndex = 15;
             this.buttonChangeBlindsValue.Text = "BB/SB";
             this.buttonChangeBlindsValue.UseVisualStyleBackColor = true;
-            this.buttonChangeBlindsValue.Click += new System.EventHandler(this.bOptions_Click);
+            this.buttonChangeBlindsValue.Click += new System.EventHandler(this.ButtonChangeBlindsValue_Click);
             // 
             // buttonBigBlind
             // 
