@@ -33,6 +33,8 @@ namespace Poker
 
         private List<bool?> bankruptPlayers;
         private List<Type> winningHands;
+        private Image[] deckCardsImages;
+        private PictureBox[] pictureBoxDeckCards;
 
         private Timer timer;
         private Timer updates;
@@ -96,8 +98,6 @@ namespace Poker
         Type sorted;
         string[] ImgLocation = Directory.GetFiles("Assets\\Cards", "*.png", SearchOption.TopDirectoryOnly);
         int[] Reserve = new int[TableCardsCount];
-        Image[] Deck = new Image[NumberOfCardsInDeck];
-        PictureBox[] Holder = new PictureBox[NumberOfCardsInDeck];
         int t = 60, i, up = 10000000, turnCount = 0;
         #endregion
         
@@ -105,6 +105,8 @@ namespace Poker
         {
             this.bankruptPlayers = new List<bool?>();
             this.winningHands = new List<Type>();
+            this.deckCardsImages = new Image[NumberOfCardsInDeck];
+            this.pictureBoxDeckCards = new PictureBox[NumberOfCardsInDeck];
             this.timer = new Timer();
             this.timer.Interval = (1 * 1 * 1000);
             this.timer.Tick += timer_Tick;
@@ -151,35 +153,35 @@ namespace Poker
             for (i = 0; i < TableCardsCount; i++)
             {
 
-                Deck[i] = Image.FromFile(ImgLocation[i]);
+                deckCardsImages[i] = Image.FromFile(ImgLocation[i]);
                 var charsToRemove = new string[] { "Assets\\Cards\\", ".png" };
                 foreach (var c in charsToRemove)
                 {
                     ImgLocation[i] = ImgLocation[i].Replace(c, string.Empty);
                 }
                 Reserve[i] = int.Parse(ImgLocation[i]) - 1;
-                Holder[i] = new PictureBox();
-                Holder[i].SizeMode = PictureBoxSizeMode.StretchImage;
-                Holder[i].Height = 130;
-                Holder[i].Width = 80;
-                this.Controls.Add(Holder[i]);
-                Holder[i].Name = "pb" + i.ToString();
+                pictureBoxDeckCards[i] = new PictureBox();
+                pictureBoxDeckCards[i].SizeMode = PictureBoxSizeMode.StretchImage;
+                pictureBoxDeckCards[i].Height = 130;
+                pictureBoxDeckCards[i].Width = 80;
+                this.Controls.Add(pictureBoxDeckCards[i]);
+                pictureBoxDeckCards[i].Name = "pb" + i.ToString();
                 await Task.Delay(200);
                 #region Throwing Cards
                 if (i < 2)
                 {
-                    if (Holder[0].Tag != null)
+                    if (pictureBoxDeckCards[0].Tag != null)
                     {
-                        Holder[1].Tag = Reserve[1];
+                        pictureBoxDeckCards[1].Tag = Reserve[1];
                     }
-                    Holder[0].Tag = Reserve[0];
-                    Holder[i].Image = Deck[i];
-                    Holder[i].Anchor = (AnchorStyles.Bottom);
+                    pictureBoxDeckCards[0].Tag = Reserve[0];
+                    pictureBoxDeckCards[i].Image = deckCardsImages[i];
+                    pictureBoxDeckCards[i].Anchor = (AnchorStyles.Bottom);
                     //Holder[i].Dock = DockStyle.Top;
-                    Holder[i].Location = new Point(horizontal, vertical);
-                    horizontal += Holder[i].Width;
+                    pictureBoxDeckCards[i].Location = new Point(horizontal, vertical);
+                    horizontal += pictureBoxDeckCards[i].Width;
                     this.Controls.Add(playerPanel);
-                    playerPanel.Location = new Point(Holder[0].Left - 10, Holder[0].Top - 10);
+                    playerPanel.Location = new Point(pictureBoxDeckCards[0].Left - 10, pictureBoxDeckCards[0].Top - 10);
                     playerPanel.BackColor = Color.DarkBlue;
                     playerPanel.Height = 150;
                     playerPanel.Width = 180;
@@ -190,25 +192,25 @@ namespace Poker
                     currentBotsPlayingCount--;
                     if (i >= 2 && i < 4)
                     {
-                        if (Holder[2].Tag != null)
+                        if (pictureBoxDeckCards[2].Tag != null)
                         {
-                            Holder[3].Tag = Reserve[3];
+                            pictureBoxDeckCards[3].Tag = Reserve[3];
                         }
-                        Holder[2].Tag = Reserve[2];
+                        pictureBoxDeckCards[2].Tag = Reserve[2];
                         if (!check)
                         {
                             horizontal = 15;
                             vertical = 420;
                         }
                         check = true;
-                        Holder[i].Anchor = (AnchorStyles.Bottom | AnchorStyles.Left);
-                        Holder[i].Image = backImage;
+                        pictureBoxDeckCards[i].Anchor = (AnchorStyles.Bottom | AnchorStyles.Left);
+                        pictureBoxDeckCards[i].Image = backImage;
                         //Holder[i].Image = Deck[i];
-                        Holder[i].Location = new Point(horizontal, vertical);
-                        horizontal += Holder[i].Width;
-                        Holder[i].Visible = true;
+                        pictureBoxDeckCards[i].Location = new Point(horizontal, vertical);
+                        horizontal += pictureBoxDeckCards[i].Width;
+                        pictureBoxDeckCards[i].Visible = true;
                         this.Controls.Add(bot1Panel);
-                        bot1Panel.Location = new Point(Holder[2].Left - 10, Holder[2].Top - 10);
+                        bot1Panel.Location = new Point(pictureBoxDeckCards[2].Left - 10, pictureBoxDeckCards[2].Top - 10);
                         bot1Panel.BackColor = Color.DarkBlue;
                         bot1Panel.Height = 150;
                         bot1Panel.Width = 180;
@@ -224,25 +226,25 @@ namespace Poker
                     currentBotsPlayingCount--;
                     if (i >= 4 && i < 6)
                     {
-                        if (Holder[4].Tag != null)
+                        if (pictureBoxDeckCards[4].Tag != null)
                         {
-                            Holder[5].Tag = Reserve[5];
+                            pictureBoxDeckCards[5].Tag = Reserve[5];
                         }
-                        Holder[4].Tag = Reserve[4];
+                        pictureBoxDeckCards[4].Tag = Reserve[4];
                         if (!check)
                         {
                             horizontal = 75;
                             vertical = 65;
                         }
                         check = true;
-                        Holder[i].Anchor = (AnchorStyles.Top | AnchorStyles.Left);
-                        Holder[i].Image = backImage;
+                        pictureBoxDeckCards[i].Anchor = (AnchorStyles.Top | AnchorStyles.Left);
+                        pictureBoxDeckCards[i].Image = backImage;
                         //Holder[i].Image = Deck[i];
-                        Holder[i].Location = new Point(horizontal, vertical);
-                        horizontal += Holder[i].Width;
-                        Holder[i].Visible = true;
+                        pictureBoxDeckCards[i].Location = new Point(horizontal, vertical);
+                        horizontal += pictureBoxDeckCards[i].Width;
+                        pictureBoxDeckCards[i].Visible = true;
                         this.Controls.Add(bot2Panel);
-                        bot2Panel.Location = new Point(Holder[4].Left - 10, Holder[4].Top - 10);
+                        bot2Panel.Location = new Point(pictureBoxDeckCards[4].Left - 10, pictureBoxDeckCards[4].Top - 10);
                         bot2Panel.BackColor = Color.DarkBlue;
                         bot2Panel.Height = 150;
                         bot2Panel.Width = 180;
@@ -258,25 +260,25 @@ namespace Poker
                     currentBotsPlayingCount--;
                     if (i >= 6 && i < 8)
                     {
-                        if (Holder[6].Tag != null)
+                        if (pictureBoxDeckCards[6].Tag != null)
                         {
-                            Holder[7].Tag = Reserve[7];
+                            pictureBoxDeckCards[7].Tag = Reserve[7];
                         }
-                        Holder[6].Tag = Reserve[6];
+                        pictureBoxDeckCards[6].Tag = Reserve[6];
                         if (!check)
                         {
                             horizontal = 590;
                             vertical = 25;
                         }
                         check = true;
-                        Holder[i].Anchor = (AnchorStyles.Top);
-                        Holder[i].Image = backImage;
+                        pictureBoxDeckCards[i].Anchor = (AnchorStyles.Top);
+                        pictureBoxDeckCards[i].Image = backImage;
                         //Holder[i].Image = Deck[i];
-                        Holder[i].Location = new Point(horizontal, vertical);
-                        horizontal += Holder[i].Width;
-                        Holder[i].Visible = true;
+                        pictureBoxDeckCards[i].Location = new Point(horizontal, vertical);
+                        horizontal += pictureBoxDeckCards[i].Width;
+                        pictureBoxDeckCards[i].Visible = true;
                         this.Controls.Add(bot3Panel);
-                        bot3Panel.Location = new Point(Holder[6].Left - 10, Holder[6].Top - 10);
+                        bot3Panel.Location = new Point(pictureBoxDeckCards[6].Left - 10, pictureBoxDeckCards[6].Top - 10);
                         bot3Panel.BackColor = Color.DarkBlue;
                         bot3Panel.Height = 150;
                         bot3Panel.Width = 180;
@@ -292,25 +294,25 @@ namespace Poker
                     currentBotsPlayingCount--;
                     if (i >= 8 && i < 10)
                     {
-                        if (Holder[8].Tag != null)
+                        if (pictureBoxDeckCards[8].Tag != null)
                         {
-                            Holder[9].Tag = Reserve[9];
+                            pictureBoxDeckCards[9].Tag = Reserve[9];
                         }
-                        Holder[8].Tag = Reserve[8];
+                        pictureBoxDeckCards[8].Tag = Reserve[8];
                         if (!check)
                         {
                             horizontal = 1115;
                             vertical = 65;
                         }
                         check = true;
-                        Holder[i].Anchor = (AnchorStyles.Top | AnchorStyles.Right);
-                        Holder[i].Image = backImage;
+                        pictureBoxDeckCards[i].Anchor = (AnchorStyles.Top | AnchorStyles.Right);
+                        pictureBoxDeckCards[i].Image = backImage;
                         //Holder[i].Image = Deck[i];
-                        Holder[i].Location = new Point(horizontal, vertical);
-                        horizontal += Holder[i].Width;
-                        Holder[i].Visible = true;
+                        pictureBoxDeckCards[i].Location = new Point(horizontal, vertical);
+                        horizontal += pictureBoxDeckCards[i].Width;
+                        pictureBoxDeckCards[i].Visible = true;
                         this.Controls.Add(bot4Panel);
-                        bot4Panel.Location = new Point(Holder[8].Left - 10, Holder[8].Top - 10);
+                        bot4Panel.Location = new Point(pictureBoxDeckCards[8].Left - 10, pictureBoxDeckCards[8].Top - 10);
                         bot4Panel.BackColor = Color.DarkBlue;
                         bot4Panel.Height = 150;
                         bot4Panel.Width = 180;
@@ -326,25 +328,25 @@ namespace Poker
                     currentBotsPlayingCount--;
                     if (i >= 10 && i < 12)
                     {
-                        if (Holder[10].Tag != null)
+                        if (pictureBoxDeckCards[10].Tag != null)
                         {
-                            Holder[11].Tag = Reserve[11];
+                            pictureBoxDeckCards[11].Tag = Reserve[11];
                         }
-                        Holder[10].Tag = Reserve[10];
+                        pictureBoxDeckCards[10].Tag = Reserve[10];
                         if (!check)
                         {
                             horizontal = 1160;
                             vertical = 420;
                         }
                         check = true;
-                        Holder[i].Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
-                        Holder[i].Image = backImage;
+                        pictureBoxDeckCards[i].Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
+                        pictureBoxDeckCards[i].Image = backImage;
                         //Holder[i].Image = Deck[i];
-                        Holder[i].Location = new Point(horizontal, vertical);
-                        horizontal += Holder[i].Width;
-                        Holder[i].Visible = true;
+                        pictureBoxDeckCards[i].Location = new Point(horizontal, vertical);
+                        horizontal += pictureBoxDeckCards[i].Width;
+                        pictureBoxDeckCards[i].Visible = true;
                         this.Controls.Add(bot5Panel);
-                        bot5Panel.Location = new Point(Holder[10].Left - 10, Holder[10].Top - 10);
+                        bot5Panel.Location = new Point(pictureBoxDeckCards[10].Left - 10, pictureBoxDeckCards[10].Top - 10);
                         bot5Panel.BackColor = Color.DarkBlue;
                         bot5Panel.Height = 150;
                         bot5Panel.Width = 180;
@@ -357,13 +359,13 @@ namespace Poker
                 }
                 if (i >= 12)
                 {
-                    Holder[12].Tag = Reserve[12];
-                    if (i > 12) Holder[13].Tag = Reserve[13];
-                    if (i > 13) Holder[14].Tag = Reserve[14];
-                    if (i > 14) Holder[15].Tag = Reserve[15];
+                    pictureBoxDeckCards[12].Tag = Reserve[12];
+                    if (i > 12) pictureBoxDeckCards[13].Tag = Reserve[13];
+                    if (i > 13) pictureBoxDeckCards[14].Tag = Reserve[14];
+                    if (i > 14) pictureBoxDeckCards[15].Tag = Reserve[15];
                     if (i > 15)
                     {
-                        Holder[16].Tag = Reserve[16];
+                        pictureBoxDeckCards[16].Tag = Reserve[16];
 
                     }
                     if (!check)
@@ -372,12 +374,12 @@ namespace Poker
                         vertical = 265;
                     }
                     check = true;
-                    if (Holder[i] != null)
+                    if (pictureBoxDeckCards[i] != null)
                     {
-                        Holder[i].Anchor = AnchorStyles.None;
-                        Holder[i].Image = backImage;
+                        pictureBoxDeckCards[i].Anchor = AnchorStyles.None;
+                        pictureBoxDeckCards[i].Image = backImage;
                         //Holder[i].Image = Deck[i];
-                        Holder[i].Location = new Point(horizontal, vertical);
+                        pictureBoxDeckCards[i].Location = new Point(horizontal, vertical);
                         horizontal += 110;
                     }
                 }
@@ -385,90 +387,90 @@ namespace Poker
                 if (bot1ChipsCount <= 0)
                 {
                     hasBotOneBankrupted = true;
-                    Holder[2].Visible = false;
-                    Holder[3].Visible = false;
+                    pictureBoxDeckCards[2].Visible = false;
+                    pictureBoxDeckCards[3].Visible = false;
                 }
                 else
                 {
                     hasBotOneBankrupted = false;
                     if (i == 3)
                     {
-                        if (Holder[3] != null)
+                        if (pictureBoxDeckCards[3] != null)
                         {
-                            Holder[2].Visible = true;
-                            Holder[3].Visible = true;
+                            pictureBoxDeckCards[2].Visible = true;
+                            pictureBoxDeckCards[3].Visible = true;
                         }
                     }
                 }
                 if (bot2ChipsCount <= 0)
                 {
                     hasBotTwoBankrupted = true;
-                    Holder[4].Visible = false;
-                    Holder[5].Visible = false;
+                    pictureBoxDeckCards[4].Visible = false;
+                    pictureBoxDeckCards[5].Visible = false;
                 }
                 else
                 {
                     hasBotTwoBankrupted = false;
                     if (i == 5)
                     {
-                        if (Holder[5] != null)
+                        if (pictureBoxDeckCards[5] != null)
                         {
-                            Holder[4].Visible = true;
-                            Holder[5].Visible = true;
+                            pictureBoxDeckCards[4].Visible = true;
+                            pictureBoxDeckCards[5].Visible = true;
                         }
                     }
                 }
                 if (bot3ChipsCount <= 0)
                 {
                     hasBotThreeBankrupted = true;
-                    Holder[6].Visible = false;
-                    Holder[7].Visible = false;
+                    pictureBoxDeckCards[6].Visible = false;
+                    pictureBoxDeckCards[7].Visible = false;
                 }
                 else
                 {
                     hasBotThreeBankrupted = false;
                     if (i == 7)
                     {
-                        if (Holder[7] != null)
+                        if (pictureBoxDeckCards[7] != null)
                         {
-                            Holder[6].Visible = true;
-                            Holder[7].Visible = true;
+                            pictureBoxDeckCards[6].Visible = true;
+                            pictureBoxDeckCards[7].Visible = true;
                         }
                     }
                 }
                 if (bot4ChipsCount <= 0)
                 {
                     hasBotFourBankrupted = true;
-                    Holder[8].Visible = false;
-                    Holder[9].Visible = false;
+                    pictureBoxDeckCards[8].Visible = false;
+                    pictureBoxDeckCards[9].Visible = false;
                 }
                 else
                 {
                     hasBotFourBankrupted = false;
                     if (i == 9)
                     {
-                        if (Holder[9] != null)
+                        if (pictureBoxDeckCards[9] != null)
                         {
-                            Holder[8].Visible = true;
-                            Holder[9].Visible = true;
+                            pictureBoxDeckCards[8].Visible = true;
+                            pictureBoxDeckCards[9].Visible = true;
                         }
                     }
                 }
                 if (bot5ChipsCount <= 0)
                 {
                     hasBotFiveBankrupted = true;
-                    Holder[10].Visible = false;
-                    Holder[11].Visible = false;
+                    pictureBoxDeckCards[10].Visible = false;
+                    pictureBoxDeckCards[11].Visible = false;
                 }
                 else
                 {
                     hasBotFiveBankrupted = false;
                     if (i == 11)
                     {
-                        if (Holder[11] != null)
+                        if (pictureBoxDeckCards[11] != null)
                         {
-                            Holder[10].Visible = true;
-                            Holder[11].Visible = true;
+                            pictureBoxDeckCards[10].Visible = true;
+                            pictureBoxDeckCards[11].Visible = true;
                         }
                     }
                 }
@@ -708,9 +710,6 @@ namespace Poker
 
         void Rules(int c1, int c2, string currentText, ref double current, ref double Power, bool foldedTurn)
         {
-            if (c1 == 0 && c2 == 1)
-            {
-            }
             if (!foldedTurn || c1 == 0 && c2 == 1 && labelPlayerStatus.Text.Contains("Fold") == false)
             {
                 #region Variables
@@ -734,9 +733,10 @@ namespace Poker
                 var st4 = d.Select(o => o / 4).Distinct().ToArray();
                 Array.Sort(Straight); Array.Sort(st1); Array.Sort(st2); Array.Sort(st3); Array.Sort(st4);
                 #endregion
+
                 for (i = 0; i < 16; i++)
                 {
-                    if (Reserve[i] == int.Parse(Holder[c1].Tag.ToString()) && Reserve[i + 1] == int.Parse(Holder[c2].Tag.ToString()))
+                    if (Reserve[i] == int.Parse(pictureBoxDeckCards[c1].Tag.ToString()) && Reserve[i + 1] == int.Parse(pictureBoxDeckCards[c2].Tag.ToString()))
                     {
                         //Pair from Hand current = 1
 
@@ -1730,8 +1730,8 @@ namespace Poker
             for (int j = 0; j <= 16; j++)
             {
                 //await Task.Delay(5);
-                if (Holder[j].Visible)
-                    Holder[j].Image = Deck[j];
+                if (pictureBoxDeckCards[j].Visible)
+                    pictureBoxDeckCards[j].Image = deckCardsImages[j];
             }
             if (current == sorted.Current)
             {
@@ -1906,9 +1906,9 @@ namespace Poker
             {
                 for (int j = 12; j <= 14; j++)
                 {
-                    if (Holder[j].Image != Deck[j])
+                    if (pictureBoxDeckCards[j].Image != deckCardsImages[j])
                     {
-                        Holder[j].Image = Deck[j];
+                        pictureBoxDeckCards[j].Image = deckCardsImages[j];
                         playerCall = 0; playerRaise = 0;
                         botOneCall = 0; botOneRaise = 0;
                         botTwoCall = 0; botTwoRaise = 0;
@@ -1922,9 +1922,9 @@ namespace Poker
             {
                 for (int j = 14; j <= 15; j++)
                 {
-                    if (Holder[j].Image != Deck[j])
+                    if (pictureBoxDeckCards[j].Image != deckCardsImages[j])
                     {
-                        Holder[j].Image = Deck[j];
+                        pictureBoxDeckCards[j].Image = deckCardsImages[j];
                         playerCall = 0; playerRaise = 0;
                         botOneCall = 0; botOneRaise = 0;
                         botTwoCall = 0; botTwoRaise = 0;
@@ -1938,9 +1938,9 @@ namespace Poker
             {
                 for (int j = 15; j <= 16; j++)
                 {
-                    if (Holder[j].Image != Deck[j])
+                    if (pictureBoxDeckCards[j].Image != deckCardsImages[j])
                     {
-                        Holder[j].Image = Deck[j];
+                        pictureBoxDeckCards[j].Image = deckCardsImages[j];
                         playerCall = 0; playerRaise = 0;
                         botOneCall = 0; botOneRaise = 0;
                         botTwoCall = 0; botTwoRaise = 0;
@@ -2041,9 +2041,9 @@ namespace Poker
                 sorted.Power = 0;
                 for (int os = 0; os < TableCardsCount; os++)
                 {
-                    Holder[os].Image = null;
-                    Holder[os].Invalidate();
-                    Holder[os].Visible = false;
+                    pictureBoxDeckCards[os].Image = null;
+                    pictureBoxDeckCards[os].Invalidate();
+                    pictureBoxDeckCards[os].Visible = false;
                 }
                 textBoxPotAmount.Text = "0";
                 labelPlayerStatus.Text = "";
@@ -2213,7 +2213,7 @@ namespace Poker
                 }
                 for (int j = 0; j <= 16; j++)
                 {
-                    Holder[j].Visible = false;
+                    pictureBoxDeckCards[j].Visible = false;
                 }
                 await Finish(1);
             }
@@ -2285,9 +2285,9 @@ namespace Poker
             ImgLocation = Directory.GetFiles("Assets\\Cards", "*.png", SearchOption.TopDirectoryOnly);
             for (int os = 0; os < TableCardsCount; os++)
             {
-                Holder[os].Image = null;
-                Holder[os].Invalidate();
-                Holder[os].Visible = false;
+                pictureBoxDeckCards[os].Image = null;
+                pictureBoxDeckCards[os].Invalidate();
+                pictureBoxDeckCards[os].Visible = false;
             }
             await Shuffle();
             //await Turns();
@@ -2382,8 +2382,8 @@ namespace Poker
             }
             if (sFTurn)
             {
-                Holder[c1].Visible = false;
-                Holder[c2].Visible = false;
+                pictureBoxDeckCards[c1].Visible = false;
+                pictureBoxDeckCards[c2].Visible = false;
             }
         }
         private void HighCard(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, double botPower)
