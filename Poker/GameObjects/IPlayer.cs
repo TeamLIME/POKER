@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Poker.GameObjects
+﻿namespace Poker.GameObjects
 {
-    interface IPlayer
+    public interface IPlayer
     {
     }
 }
