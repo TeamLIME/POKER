@@ -50,6 +50,10 @@
     <Compile Include="AddChips.Designer.cs">
       <DependentUpon>AddChips.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameObjects\BotPlayer.cs" />
+    <Compile Include="GameObjects\HumanPlayer.cs" />
+    <Compile Include="GameObjects\IPlayer.cs" />
+    <Compile Include="GameObjects\Player.cs" />
     <Compile Include="PokerTable.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +151,7 @@
     <Content Include="Resources\Cards\9_of_hearts.png" />
     <Content Include="Resources\Cards\9_of_spades.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
