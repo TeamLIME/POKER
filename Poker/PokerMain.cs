@@ -3,7 +3,7 @@
     using System;
     using System.Windows.Forms;
 
-    public static class Program
+    public static class PokerMain
     {
         /// <summary>
         /// The main entry point for the application.
