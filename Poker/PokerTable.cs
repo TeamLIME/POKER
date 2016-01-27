@@ -56,61 +56,44 @@ namespace Poker
         private int bigBlindValue;
         private int smallBlindValue;
 
-        //        private int player.ChipsCount;
-        //        private int player.Call;
-        //        private int player.Raise;
-        //       private bool player.HasBankrupted;
-        //        private bool player.IsOnTurn;
-        //        private bool player.ShouldRestart;
-
-        //        private int botsList[0].ChipsCount;
-        //        private int botsList[1].ChipsCount;
-        //        private int botsList[2].ChipsCount;
-        //       private int botsList[3].ChipsCount;
-        //        private int botsList[4].ChipsCount;
-        //       private bool bots[0].IsOnTurn;
-        //      private bool bots[1].IsOnTurn;
-        //       private bool bots[2].IsOnTurn;
-        //      private bool bots[3].IsOnTurn;
-        //      private bool bots[4].IsOnTurn;
-        //      private bool bots[0].HasBankrupted;
-        //      private bool bots[1].HasBankrupted;
-        //     private bool bots[2].HasBankrupted;
-        //    private bool bots[3].HasBankrupted;
-        //     private bool bots[4].HasBankrupted;
-        //     private bool player.HasFolded;
-        //      private bool bots[0].HasFolded;
-        //      private bool bots[1].HasFolded;
-        //       private bool bots[2].HasFolded;
-        //       private bool bots[3].HasFolded;
-        //       private bool bots[4].HasFolded;
-        //     private int bots[0].Call;
-        //      private int bots[1].Call;
-        //       private int bots[2].Call;
-        //        private int bots[3].Call;
-        //     private int bots[4].Call;
-        //        private int bots[0].Raise;
-        //       private int bots[1].Raise;
-        //     private int bots[2].Raise;
-        //      private int bots[3].Raise;
-        //        private int bots[4].Raise;
-
         private int windowWidth;
         private int windowHeight;
         private int winners;
 
-        double type, rounds = 0, b1Power, b2Power, b3Power, b4Power, b5Power, pPower = 0, pType = -1, Raise = 0,
-        b1Type = -1, b2Type = -1, b3Type = -1, b4Type = -1, b5Type = -1;
-        bool intsadded, changed;
-        int Flop = 1, Turn = 2, River = 3, End = 4, maxLeft = 6;
-        int last = 123, raisedTurn = 1;
+        double type;
+        double rounds = 0;
+        double b1Power;
+        double b2Power;
+        double b3Power;
+        double b4Power;
+        double b5Power;
+        double pPower = 0;
+        double pType = -1;
+        double Raise = 0;
+        double b1Type = -1;
+        double b2Type = -1;
+        double b3Type = -1;
+        double b4Type = -1;
+        double b5Type = -1;
+        bool intsadded;
+        bool changed;
+        int Flop = 1;
+        int Turn = 2;
+        int River = 3;
+        int End = 4;
+        int maxLeft = 6;
+        int last = 123;
+        int raisedTurn = 1;
         List<string> CheckWinners = new List<string>();
         List<int> ints = new List<int>();
         bool raising = false;
         Type sorted;
         string[] ImgLocation = Directory.GetFiles("Assets\\Cards", "*.png", SearchOption.TopDirectoryOnly);
         int[] Reserve = new int[TableCardsCount];
-        int t = 60, i, up = 10000000, turnCount = 0;
+        int t = 60;
+        int i;
+        int up = 10000000;
+        int turnCount = 0;
         #endregion
 
         public PokerTable()
@@ -607,7 +590,7 @@ namespace Poker
                         FixCall(labelBot2Status, bots[1], 2);
                         Rules(4, 5, "Bot 2", ref b2Type, ref b2Power, bots[1].HasBankrupted);
                         MessageBox.Show("Bot 2's Turn");
-                        AI(4, 5,bots[1], labelBot2Status, 1, b2Power, b2Type);
+                        AI(4, 5, bots[1], labelBot2Status, 1, b2Power, b2Type);
                         turnCount++;
                         last = 2;
                         bots[1].IsOnTurn = false;
@@ -630,8 +613,8 @@ namespace Poker
                 {
                     if (bots[2].IsOnTurn)
                     {
-                        FixCall(labelBot3Status,bots[2], 1);
-                        FixCall(labelBot3Status,bots[2], 2);
+                        FixCall(labelBot3Status, bots[2], 1);
+                        FixCall(labelBot3Status, bots[2], 2);
                         Rules(6, 7, "Bot 3", ref b3Type, ref b3Power, bots[2].HasBankrupted);
                         MessageBox.Show("Bot 3's Turn");
                         AI(6, 7, bots[2], labelBot3Status, 2, b3Power, b3Type);
@@ -658,7 +641,7 @@ namespace Poker
                     if (bots[3].IsOnTurn)
                     {
                         FixCall(labelBot4Status, bots[3], 1);
-                        FixCall(labelBot4Status,bots[3], 2);
+                        FixCall(labelBot4Status, bots[3], 2);
                         Rules(8, 9, "Bot 4", ref b4Type, ref b4Power, bots[3].HasBankrupted);
                         MessageBox.Show("Bot 4's Turn");
                         AI(8, 9, bots[3], labelBot4Status, 3, b4Power, b4Type);
