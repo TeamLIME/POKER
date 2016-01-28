@@ -12,7 +12,7 @@ namespace Poker
 {
     public partial class AddChips : Form
     {
-        public int a=0;
+        private int amount = 0;
         public AddChips()
         {
             FontFamily fontFamily = new FontFamily("Arial");
@@ -20,6 +20,8 @@ namespace Poker
             ControlBox = false;
             label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
         }
+
+        public int Amount { get; set; }
 
         public void button1_Click(object sender, EventArgs e)
         {
@@ -37,7 +39,7 @@ namespace Poker
             }
             else if (int.TryParse(textBox1.Text, out parsedValue) && int.Parse(textBox1.Text) <= 100000000)
             {
-                a = int.Parse(textBox1.Text);
+                this.Amount = int.Parse(textBox1.Text);
                 this.Close();
             }
         }
