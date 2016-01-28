@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Poker</name>
+    </assembly>
+    <members>
+        <member name="F:Poker.AddChips.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Poker.AddChips.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Poker.AddChips.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Poker.GameObjects.Player">
+            <summary>
+            Defines a poker game player.
+            </summary>
+        </member>
+        <member name="P:Poker.GameObjects.Player.ChipsCount">
+            <summary>
+            Player's number of playing chips.
+            </summary>
+        </member>
+        <member name="P:Poker.GameObjects.Player.Call">
+            <summary>
+            Players's call amount in terms of chips.
+            </summary>
+        </member>
+        <member name="P:Poker.GameObjects.Player.Raise">
+            <summary>
+            Players's raise amount in terms of chips.
+            </summary>
+        </member>
+        <member name="P:Poker.GameObjects.Player.HasBankrupted">
+            <summary>
+            True if the player has ran out of chips.
+            </summary>
+        </member>
+        <member name="M:Poker.PokerMain.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:Poker.PokerTable">
+            <summary>
+            Holds the main logic behind the Poker Game (e.g. shuffling and dealing cards, computing hand strength/value, 
+            determining winner as well as user interaction).
+            </summary>
+        </member>
+        <member name="F:Poker.PokerTable.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Poker.PokerTable.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Poker.PokerTable.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Poker.WinningHands">
+            <summary>
+            Defines a set of static methods for determining a card game hand strength, e.g.
+            if a hand holds a pair, two pairs, three of a kind etc.
+            </summary>
+        </member>
+        <member name="T:Poker.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Poker.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Poker.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Poker.Properties.Resources.poker_table___Copy">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+    </members>
+</doc>

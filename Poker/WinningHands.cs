@@ -3,6 +3,11 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    
+    /// <summary>
+    /// Defines a set of static methods for determining a card game hand strength, e.g.
+    /// if a hand holds a pair, two pairs, three of a kind etc.
+    /// </summary>
     public class WinningHands
     {
         public static void rStraightFlush(
